@@ -1,0 +1,37 @@
+@startuml order_system
+:customer:
+:restaurant:
+
+rectangle "restaurant order system" {
+    usecase view_menu as "view menu"
+    usecase place_order as "place order"
+    usecase confirm as "confirm order"
+    usecase reject as "reject order"
+    usecase view_orders as "view orders"
+    usecase update_menu as "create/update menu"
+    usecase notify as "notify customer"
+    usecase login as "login"
+    usecase register as "register"
+    usecase give_rating as "give rating"
+}
+
+customer -- view_menu
+customer -- place_order
+customer <-- notify
+customer -r- login
+customer -r- register
+customer -- give_rating
+
+restaurant -u- confirm
+restaurant -u- reject
+restaurant -u- view_orders
+restaurant -u- update_menu
+restaurant -u- login
+
+place_order ..> view_menu : <<include>>
+notify ..> confirm : <<extend>>
+notify ..> reject : <<extend>>
+confirm ..> view_orders : <<include>>
+reject ..> view_orders : <<include>>
+
+@enduml
