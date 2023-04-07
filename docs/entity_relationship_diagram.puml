@@ -1,0 +1,37 @@
+@startuml
+
+entity menu_item as "Menu Item" {
+    * **ID**: int <<PK>>
+    --
+    * name: str
+    * description: str
+    * price: int
+}
+
+entity customer as "Customer" {
+    * **ID**: int <<PK>>
+    --
+    * email: str
+    * password_hash: bytes
+}
+
+entity order as "Order" {
+    * **ID**: int <<PK>>
+    --
+    * status: str
+    * time_created: int
+    * **customer_id**: int <<FK>>
+}
+
+entity restaurant as "Restaurant" {
+    * **ID**: int <<PK>>
+    --
+    * description: str
+}
+
+order }o--|{ menu_item
+customer ||--o{ order
+restaurant ||--o{ order
+restaurant ||--o{ menu_item
+
+@enduml
