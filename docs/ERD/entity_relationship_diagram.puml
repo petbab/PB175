@@ -21,6 +21,7 @@ entity order as "Order" {
     * status: str
     * time_created: int
     * **customer_id**: int <<FK>>
+    * **items**: List[Tuple[int, int]] <<FK>>
 }
 
 entity restaurant as "Restaurant" {
