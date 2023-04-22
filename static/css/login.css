@@ -1,0 +1,50 @@
+.rectangle-1 {
+	width: 391px;
+	height: 305px;
+	padding: 8px 8px 8px 8px;
+	background: #ffffff;
+	border-color: #000000;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 14px 14px 14px 14px;
+	margin: 0 auto;
+}
+.text-input {
+	width: 180px;
+	height: 32px;
+	padding: 4px 8px 4px 8px;
+	background: #ffffff;
+	color: black;
+	border-color: #232323;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 6px 6px 6px 6px;
+	font-family: "Helvetica";
+	font-weight: 400;
+	font-size: 14px;
+	text-align: left;
+	display: flex;
+	align-items: center;
+	margin: 0 auto;
+}
+
+.button {
+	width: 120px;
+	height: 25px;
+	padding: 0px 10px 0px 10px;
+	background: #aedd94;
+	color: #232323;
+	border-color: #232323;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 5px 5px 5px 5px;
+	font-family: "Helvetica";
+	font-weight: 400;
+	font-size: 14px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto;
+}
+.button:hover { background: limegreen }
