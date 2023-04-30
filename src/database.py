@@ -82,7 +82,7 @@ class Order:
         con.commit()
 
 
-def validate_login(db: Database, email: str, password: str) -> Tuple[int, bool]:
+def login(db: Database, email: str, password: str) -> Tuple[int, bool]:
     if not re.match(r'^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$', email) or not password:
         return -1, False
 

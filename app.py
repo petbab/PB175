@@ -19,8 +19,7 @@ def index():
 def login():
     error = None
     if request.method == 'POST':
-        customer_id, valid = db.validate_login(database, request.form['email'],
-                                               request.form['password'])
+        customer_id, valid = db.login(database, request.form['email'], request.form['password'])
         if valid:
             session['customer_id'] = customer_id
             return redirect(url_for('place_order'))
