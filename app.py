@@ -3,6 +3,11 @@ import src.database as db
 
 
 app = Flask(__name__, static_folder='static')
+app.secret_key = 'dev_key'  # TODO: change key
+
+
+database = db.Database('data/data.db')
+database.setup()
 
 
 @app.route('/')
@@ -14,11 +19,13 @@ def index():
 def login():
     error = None
     if request.method == 'POST':
-        if db.validate_login(request.form['email'],
-                             request.form['password']):
-            return 'success!'
-        else:
-            error = 'Invalid email/password'
+        customer_id, valid = db.validate_login(database, request.form['email'],
+                                               request.form['password'])
+        if valid:
+            session['customer_id'] = customer_id
+            return redirect(url_for('place_order'))
+        error = 'Invalid email/password'
+
     return render_template('login.html', error=error)
 
 
