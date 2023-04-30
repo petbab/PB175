@@ -57,9 +57,34 @@ class Customer:
         con.commit()
 
 
-def validate_login(email: str, password: str) -> bool:
-    if not re.match('^[\w\-.]+@([\w-]+\.)+[\w-]{2,4}$', email) or not password:
-        return False
+class Order:
+    __slots__ = 'status', 'time_created', 'customer_id', 'row_id'
+
+    def __init__(self, status: str, time_created: int,
+                 customer_id: int, row_id: int = -1) -> None:
+        self.status = status
+        self.time_created = time_created
+        self.customer_id = customer_id
+        self.row_id = row_id
+
+    @classmethod
+    def get(cls, db: Database, customer_id: int) -> Optional['Order']:
+        con, cur = db.connect()
+        res = cur.execute(
+            f"SELECT *, rowid FROM order_ WHERE customer_id = '{customer_id}'"
+        ).fetchall()
+        return cls(*res[0]) if res else None
+
+    def write(self, db: Database) -> None:
+        con, cur = db.connect()
+        cur.execute(f'INSERT INTO order_ VALUES(\'{self.status}\','
+                    f'\'{self.time_created}\', \'{self.customer_id}\')')
+        con.commit()
+
+
+def validate_login(db: Database, email: str, password: str) -> Tuple[int, bool]:
+    if not re.match(r'^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$', email) or not password:
+        return -1, False
 
     pass_hash = hashlib.sha256(bytes(password, 'utf-8'),
                                usedforsecurity=True).hexdigest()
