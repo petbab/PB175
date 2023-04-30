@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 import src.database as db
 
 
@@ -27,6 +27,15 @@ def login():
         error = 'Invalid email/password'
 
     return render_template('login.html', error=error)
+
+
+@app.route('/place-order', methods=['GET', 'POST'])
+def place_order():
+    error = None
+    if request.method == 'POST':
+        error = 'Invalid email/password'
+
+    return render_template('place_order.html', error=error)
 
 
 if __name__ == '__main__':

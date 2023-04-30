@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/place_order.css">
+    <title>My Flask App</title>
+</head>
+<body>
+    <div class="rectangle">
+        <form action="{{ url_for('place_order') }}" method="post">
+            <p class="title" style="margin-top: 50px">MENU</p>
+            <div class="menu-item" style="margin-top: 50px">
+                <p><b>Menu item 1</b><br>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Aliquam tincidunt, nisl maximus molestie pulvinar, turpis est semper est,
+                a interdum libero orci eget tortor.</p>
+                <input type="text" class="text-input" style="" id="0" name="0" placeholder="0">
+            </div>
+            <div class="menu-item" style="margin-top: 50px">
+                <p><b>Menu item 1</b><br>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Aliquam tincidunt, nisl maximus molestie pulvinar, turpis est semper est,
+                a interdum libero orci eget tortor.</p>
+                <input type="text" class="text-input" style="" id="1" name="1" placeholder="0">
+            </div>
+            <button class="button" type="submit" style="margin-top: 20px">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
