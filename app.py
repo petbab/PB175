@@ -1,9 +1,9 @@
+import secrets
 from flask import Flask, render_template, request, redirect, url_for, session
-import src.database as db
-
+import database as db
 
 app = Flask(__name__, static_folder='static')
-app.secret_key = 'dev_key'  # TODO: change key
+app.secret_key = secrets.token_hex(16)
 
 
 database = db.Database('data/data.db')

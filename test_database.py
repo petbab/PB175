@@ -1,7 +1,6 @@
-import unittest
-import src.database as db
 import os
-
+import unittest
+import database as db
 
 DATABASE = 'tests.db'
 
@@ -24,7 +23,7 @@ class TestLogin(unittest.TestCase):
         """ This test focuses on the `login` function from `database.py`. """
         # connect to database
         database = db.Database(DATABASE)
-        con, cur = database.connect()
+        _, cur = database.connect()
 
         # tests invalid email and password
         self.assertFalse(db.login(database, '', '')[1])
@@ -91,7 +90,7 @@ class TestCustomer(unittest.TestCase):
         """ This test focuses on the `write` method in `Customer`. """
         # connect to database
         database = db.Database(DATABASE)
-        con, cur = database.connect()
+        _, cur = database.connect()
 
         # make sure database is empty
         res = cur.execute('SELECT * FROM customer').fetchall()
@@ -103,7 +102,7 @@ class TestCustomer(unittest.TestCase):
             db.Customer(mail, pass_hash).write(database)
 
         # make sure they're there
-        res = cur.execute(f"SELECT * FROM customer").fetchall()
+        res = cur.execute("SELECT * FROM customer").fetchall()
         self.assertEqual(20, len(res))
 
         # check the data
